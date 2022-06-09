@@ -19,6 +19,7 @@ export class PageUsuariosComponent implements OnInit {
     private _mensajesService: MessageService
   ) {
     this.cargando = false;
+
   }
 
   ngOnInit(): void {

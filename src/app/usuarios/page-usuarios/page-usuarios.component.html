@@ -4,14 +4,22 @@
   <div *ngIf="listaUsuarios">
     <p-table [value]="listaUsuarios"
              styleClass="p-datatable-striped"
-             responsiveLayout="scroll"
-    >
+             [paginator]="true"
+             [rows]="10"
+             [showCurrentPageReport]="true"
+             currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} usuarios"
+             [rowsPerPageOptions]="[10,25,50]"
+             responsiveLayout="scroll">
+
       <ng-template pTemplate="header">
         <tr>
-          <th>Id</th>
-          <th>Nombre</th>
-          <th>Email</th>
-          <th>Rol</th>
+          <th pSortableColumn="id">
+            <span>Id</span>
+            <p-sortIcon field="id"></p-sortIcon>
+          </th>
+          <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre"></p-sortIcon></th>
+          <th pSortableColumn="correo">Email <p-sortIcon field="correo"></p-sortIcon></th>
+          <th pSortableColumn="rol.rol">Rol <p-sortIcon field="rol.rol"></p-sortIcon></th>
           <th>Acciones</th>
         </tr>
       </ng-template>
@@ -22,8 +30,8 @@
           <td>{{usuario.correo}}</td>
           <td>{{usuario.rol.rol}}</td>
           <td>
-            <button (click)="eliminarUsuario()" pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning me-2"></button>
-            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger me-2"></button>
+            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning me-2"></button>
+            <button (click)="eliminarUsuario()" pButton icon="pi pi-trash" class="p-button-rounded p-button-danger me-2"></button>
           </td>
         </tr>
       </ng-template>

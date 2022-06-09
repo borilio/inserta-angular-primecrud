@@ -19,7 +19,6 @@ export class PageUsuariosComponent implements OnInit {
     private _mensajesService: MessageService
   ) {
     this.cargando = false;
-
   }
 
   ngOnInit(): void {
@@ -28,7 +27,7 @@ export class PageUsuariosComponent implements OnInit {
 
   public cargarDatos() {
     this.cargando = true; //para mostrar la barra
-    this._usuariosService.getUsuarios().subscribe(
+    this._usuariosService.getAll().subscribe(
       {
         next: (resp) => {
           this.listaUsuarios = resp;

@@ -12,8 +12,10 @@ export class UsuariosService {
     private _http : HttpClient
   ) { }
 
-  public getUsuarios() : Observable<Usuario[]>{
+  public getAll() : Observable<Usuario[]>{
     const url = `http://localhost:3000/usuarios`;
     return this._http.get<Usuario[]>(url);
   }
+
+
 }

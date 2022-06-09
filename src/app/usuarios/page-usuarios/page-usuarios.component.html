@@ -1,3 +1,30 @@
 <p-card header="Usuarios" subheader="Tabla de usuarios">
+  <p-progressBar *ngIf="cargando" mode="indeterminate" [style]="{'height': '0.5rem'}"></p-progressBar>
+  <div class="table-responsive" *ngIf="!cargando && this.listaUsuarios">
+    <table class="table text-light">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let usuario of this.listaUsuarios">
+        <td>{{usuario.id}}</td>
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.correo}}</td>
+        <td>{{usuario.rol.rol}}</td>
+        <td>
+          <button (click)="eliminarUsuario()" pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning me-2"></button>
+          <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger me-2"></button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
 </p-card>
+<p-toast></p-toast>

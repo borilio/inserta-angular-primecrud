@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from './components/menu/menu.component';
 import {AppRoutingModule} from "../app-routing.module";
 import {PrimengModule} from "../primeng/primeng.module";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {PrimengModule} from "../primeng/primeng.module";
   imports: [
     CommonModule,
     AppRoutingModule,
-    PrimengModule
+    PrimengModule,
+    HttpClientModule
   ],
   exports: [
     MenuComponent

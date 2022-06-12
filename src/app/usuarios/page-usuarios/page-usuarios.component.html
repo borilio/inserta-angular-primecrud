@@ -2,6 +2,15 @@
   <p-progressBar *ngIf="cargando" mode="indeterminate" [style]="{'height': '0.5rem'}"></p-progressBar>
 
   <div *ngIf="listaUsuarios">
+    <p-toolbar>
+      <ng-template pTemplate="left">
+        <p-button label="Nuevo usuario" class="p-button-success me-2" icon="pi pi-plus" (click)="mostrarDialogoFormularioUsuario()"></p-button>
+      </ng-template>
+      <ng-template pTemplate="right">
+        <button [disabled]="true" pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
+      </ng-template>
+    </p-toolbar>
+
     <p-table [value]="listaUsuarios"
              styleClass="p-datatable-striped"
              [paginator]="true"
@@ -30,14 +39,41 @@
           <td>{{usuario.correo}}</td>
           <td>{{usuario.rol.rol}}</td>
           <td>
-            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning me-2"></button>
-            <button (click)="eliminarUsuario()" pButton icon="pi pi-trash" class="p-button-rounded p-button-danger me-2"></button>
+            <button pRipple pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning me-2"></button>
+            <button pRipple (click)="confirmarBorradoUsuario(usuario, $event)" [loading]="borrando" pButton icon="pi pi-trash" class="p-button-rounded p-button-danger me-2"></button>
           </td>
         </tr>
       </ng-template>
-      <ng-template pTemplate="footer"></ng-template>
+      <ng-template pTemplate="paginatorright">
+        <p-button (click)="cargarDatos()" type="button" icon="pi pi-refresh" styleClass="p-button-text"></p-button>
+      </ng-template>
+      <ng-template pTemplate="summary"></ng-template>
     </p-table>
   </div>
 
 </p-card>
+
+<!--Estos elementos son todos emergentes, se pueden poner en cualquier parte del HTML-->
 <p-toast></p-toast>
+<p-confirmPopup></p-confirmPopup>
+<p-dialog
+  header="Nuevo usuario"
+  [(visible)]="mostrandoDialogoUsuario"
+  [modal]="true">
+
+  <ng-template pTemplate="content">
+    <div class="d-grid gap-3">
+      <input pInputText type="text" placeholder="Id" />
+      <input pInputText type="text" placeholder="Nombre" />
+      <input pInputText type="email" placeholder="Correo" />
+      <input pInputText type="password" placeholder="Contraseña" />
+<!--      TODO: Hacer el select con un dropdown de Roles-->
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"></button>
+    <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
+  </ng-template>
+
+</p-dialog>
+

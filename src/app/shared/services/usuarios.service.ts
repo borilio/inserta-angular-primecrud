@@ -17,5 +17,9 @@ export class UsuariosService {
     return this._http.get<Usuario[]>(url);
   }
 
+  public deleteById(id: number) : Observable<Usuario> {
+    const url = `http://localhost:3000/usuarios/${id}`;
+    return this._http.delete<Usuario>(url);
+  }
 
 }

@@ -5,10 +5,13 @@ import {ButtonModule} from 'primeng/button';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {ToastModule} from 'primeng/toast';
 import {TableModule} from "primeng/table";
+import {ConfirmPopupModule} from "primeng/confirmpopup";
+import {RippleModule} from "primeng/ripple";
+import {DialogModule} from "primeng/dialog";
+import {ToolbarModule} from "primeng/toolbar";
+import {InputTextModule} from "primeng/inputtext";
 
 @NgModule({
-  declarations: [],
-
   //No necesitamos hacer imports, solo exports para poder usar estos módulos en otros componentes
 
   exports: [
@@ -18,6 +21,11 @@ import {TableModule} from "primeng/table";
     ProgressBarModule,
     ToastModule,
     TableModule,
+    ConfirmPopupModule,
+    RippleModule,
+    DialogModule,
+    ToolbarModule,
+    InputTextModule,
   ]
 })
 export class PrimengModule { }

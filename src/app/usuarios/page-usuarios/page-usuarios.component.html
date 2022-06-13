@@ -1,5 +1,5 @@
 <p-card header="Usuarios" subheader="Tabla de usuarios">
-  <p-progressBar *ngIf="cargando" mode="indeterminate" [style]="{'height': '0.5rem'}"></p-progressBar>
+  <p-progressBar *ngIf="procesoCargaListaUsuarios" mode="indeterminate" [style]="{'height': '0.5rem'}"></p-progressBar>
 
   <div *ngIf="listaUsuarios">
     <p-toolbar>
@@ -39,8 +39,8 @@
           <td>{{usuario.correo}}</td>
           <td>{{usuario.rol.rol}}</td>
           <td>
-            <button pRipple pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning me-2"></button>
-            <button pRipple (click)="confirmarBorradoUsuario(usuario, $event)" [loading]="borrando" pButton icon="pi pi-trash" class="p-button-rounded p-button-danger me-2"></button>
+            <button pRipple (click)="editarUsuario(usuario)" pButton icon="pi pi-pencil" class="p-button-rounded p-button-warning me-2"></button>
+            <button pRipple (click)="confirmarBorradoUsuario(usuario, $event)" [loading]="procesoBorrando" pButton icon="pi pi-trash" class="p-button-rounded p-button-danger me-2"></button>
           </td>
         </tr>
       </ng-template>
@@ -59,21 +59,35 @@
 <p-dialog
   header="Nuevo usuario"
   [(visible)]="mostrandoDialogoUsuario"
+  [maximizable]="true"
   [modal]="true">
 
-  <ng-template pTemplate="content">
-    <div class="d-grid gap-3">
-      <input pInputText type="text" placeholder="Id" />
-      <input pInputText type="text" placeholder="Nombre" />
-      <input pInputText type="email" placeholder="Correo" />
-      <input pInputText type="password" placeholder="Contraseña" />
-<!--      TODO: Hacer el select con un dropdown de Roles-->
+  <div id="contenido">
+    <div>
+      <div class="d-grid gap-3">
+        <input pInputText [(ngModel)]="this.usuario.id" type="text" placeholder="Id"/>
+        <input pInputText [(ngModel)]="this.usuario.nombre" type="text" placeholder="Nombre"/>
+        <input pInputText [(ngModel)]="this.usuario.correo" type="email" placeholder="Correo"/>
+        <input pInputText [(ngModel)]="this.usuario.clave" type="password" placeholder="Contraseña"/>
+        <p-dropdown appendTo="body" [(ngModel)]="this.usuario.rol" [options]="rolesDisponibles" optionLabel="rol"></p-dropdown>
+      </div>
+
+      <!--*********TODO: BORRAR ESTO CUANDO YA FUNCIONE-->
+      <hr>
+      <code>
+        this.usuario = {{this.usuario | json }}
+      </code>
+      <hr>
+      <!--******************************************-->
+
+      <div id="botonera" class="float-end">
+        <button (click)="ocultarDialogoFormularioUsuario()" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text me-2"></button>
+        <button (click)="guardarUsuario()" [loading]="procesoGuardando" pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
+      </div>
     </div>
-  </ng-template>
-  <ng-template pTemplate="footer">
-    <button pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text"></button>
-    <button pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
-  </ng-template>
+
+
+  </div>
+
 
 </p-dialog>
-

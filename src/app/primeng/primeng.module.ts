@@ -10,6 +10,7 @@ import {RippleModule} from "primeng/ripple";
 import {DialogModule} from "primeng/dialog";
 import {ToolbarModule} from "primeng/toolbar";
 import {InputTextModule} from "primeng/inputtext";
+import {DropdownModule} from "primeng/dropdown";
 
 @NgModule({
   //No necesitamos hacer imports, solo exports para poder usar estos módulos en otros componentes
@@ -26,6 +27,7 @@ import {InputTextModule} from "primeng/inputtext";
     DialogModule,
     ToolbarModule,
     InputTextModule,
+    DropdownModule
   ]
 })
 export class PrimengModule { }

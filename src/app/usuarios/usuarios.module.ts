@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PageUsuariosComponent } from './page-usuarios/page-usuarios.component';
 import {PrimengModule} from "../primeng/primeng.module";
-import {FormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -12,7 +12,7 @@ import {FormsModule} from "@angular/forms";
   imports: [
     CommonModule,
     PrimengModule,
-    FormsModule
+    ReactiveFormsModule
   ]
 })
 export class UsuariosModule { }

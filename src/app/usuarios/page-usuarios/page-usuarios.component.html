@@ -63,28 +63,36 @@
   [modal]="true">
 
   <div id="contenido">
-    <div>
+    <form [formGroup]="formUsuario" (ngSubmit)="formularioUsuarioEnviado()">
       <div class="d-grid gap-3">
-        <input pInputText [(ngModel)]="this.usuario.id" type="text" placeholder="Id"/>
-        <input pInputText [(ngModel)]="this.usuario.nombre" type="text" placeholder="Nombre"/>
-        <input pInputText [(ngModel)]="this.usuario.correo" type="email" placeholder="Correo"/>
-        <input pInputText [(ngModel)]="this.usuario.clave" type="password" placeholder="Contraseña"/>
-        <p-dropdown appendTo="body" [(ngModel)]="this.usuario.rol" [options]="rolesDisponibles" optionLabel="rol"></p-dropdown>
+        <input [class]="esCampoInvalido('id') ? 'ng-invalid ng-dirty' : ''" id="id" pInputText type="text" placeholder="Id" formControlName="id"/>
+        <input [class]="esCampoInvalido('nombre') ? 'ng-invalid ng-dirty' : ''" id="nombre" pInputText type="text" placeholder="Nombre" formControlName="nombre"/>
+        <input [class]="esCampoInvalido('correo') ? 'ng-invalid ng-dirty' : ''" id="correo" pInputText type="email" placeholder="Correo" formControlName="correo"/>
+        <div>
+          <input [class]="esCampoInvalido('clave') ? 'ng-invalid ng-dirty' : ''" id="clave" pInputText type="password" placeholder="Contraseña" formControlName="clave"/>
+          <small *ngIf="esCampoInvalido('clave')" class="p-error d-block">Al menos 8 caracteres, 1 mayúscula, 1 minúscula y 1 número</small>
+        </div>
+        <p-dropdown id="rol" appendTo="body" [options]="rolesDisponibles" optionLabel="rol" formControlName="rol"></p-dropdown>
       </div>
 
       <!--*********TODO: BORRAR ESTO CUANDO YA FUNCIONE-->
       <hr>
-      <code>
-        this.usuario = {{this.usuario | json }}
-      </code>
+      <code>formUsuario.value = {{ formUsuario.value | json }}</code>
       <hr>
+      <code>formUsuario.invalid = {{ formUsuario.invalid }} <----> formUsuario.valid = {{ formUsuario.valid }}</code>
+      <hr>
+      <code>formUsuario.touched = {{ formUsuario.touched }}</code>
+      <hr>
+      <code>formUsuario.controls['clave'].errors =  {{ formUsuario.controls['clave'].errors | json }}</code>
+      <hr>
+
       <!--******************************************-->
 
       <div id="botonera" class="float-end">
-        <button (click)="ocultarDialogoFormularioUsuario()" pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text me-2"></button>
-        <button (click)="guardarUsuario()" [loading]="procesoGuardando" pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
+        <button type="button" (click)="ocultarDialogoFormularioUsuario()"  pButton pRipple label="Cancelar" icon="pi pi-times" class="p-button-text me-2"></button>
+        <button pTooltip="El formulario no es válido, revisa" [tooltipDisabled]="formUsuario.valid" tooltipPosition="right" type="submit" [loading]="procesoGuardando" pButton pRipple label="Guardar" icon="pi pi-check" class="p-button-text"></button>
       </div>
-    </div>
+    </form>
 
 
   </div>

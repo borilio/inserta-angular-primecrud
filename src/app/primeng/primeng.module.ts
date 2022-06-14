@@ -11,6 +11,7 @@ import {DialogModule} from "primeng/dialog";
 import {ToolbarModule} from "primeng/toolbar";
 import {InputTextModule} from "primeng/inputtext";
 import {DropdownModule} from "primeng/dropdown";
+import {TooltipModule} from "primeng/tooltip";
 
 @NgModule({
   //No necesitamos hacer imports, solo exports para poder usar estos módulos en otros componentes
@@ -27,7 +28,8 @@ import {DropdownModule} from "primeng/dropdown";
     DialogModule,
     ToolbarModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    TooltipModule
   ]
 })
 export class PrimengModule { }

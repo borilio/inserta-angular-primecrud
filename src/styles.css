@@ -2,5 +2,6 @@
 
 body{
   /* O bien usar las variables que están definidas en el node_modules\primeng\resources\themes\{Tema}\theme.css... */
-  background-color: var(--surface-b);
+  background-color: var(--surface-d);
+  color: var(--text-color);
 }

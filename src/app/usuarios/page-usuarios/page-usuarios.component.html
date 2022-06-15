@@ -4,7 +4,7 @@
   <div *ngIf="listaUsuarios">
     <p-toolbar>
       <ng-template pTemplate="left">
-        <p-button label="Nuevo usuario" class="p-button-success me-2" icon="pi pi-plus" (click)="mostrarDialogoFormularioUsuario()"></p-button>
+        <p-button label="Nuevo usuario" class="p-button-success me-2" icon="pi pi-plus" (click)="mostrarDialogoFormularioUsuario(false)"></p-button>
       </ng-template>
       <ng-template pTemplate="right">
         <button [disabled]="true" pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help"></button>
@@ -57,7 +57,7 @@
 <p-toast></p-toast>
 <p-confirmPopup></p-confirmPopup>
 <p-dialog
-  header="Nuevo usuario"
+  [header]="this.estoyModificando ? 'Editar usuario' : 'Nuevo usuario'"
   [(visible)]="mostrandoDialogoUsuario"
   [maximizable]="true"
   [modal]="true">

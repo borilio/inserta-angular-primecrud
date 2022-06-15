@@ -4,7 +4,7 @@ export interface Usuario {
   nombre: string;
   correo: string;
   clave:  string;
-  admin:  boolean;
+  admin?:  boolean;
 }
 
 export interface Rol {

@@ -1,8 +1,32 @@
-<p-card header="Login">
+<p-dialog
+  [visible]="true"
+  [closable]="false"
+  [draggable]="true"
+  [maximizable]="true"
+  class="p-fluid"
+  header="Login">
 
-  <div class="text-center">
-    <button (click)="login()" pButton pRipple icon="pi pi-user" label="Login"></button>
-  </div>
+  <ng-template pTemplate="content">
+    <div class="container d-grid gap-3">
+      <!-- Mensaje de error de login-->
+      <div id="mensaje" class="p-message p-message-error p-2">
+        <span>Usuario y/o contraseña no válidos</span>
+      </div>
 
-</p-card>
+      <!-- contenido del formulario -->
+      <div class="p-input-icon-left">
+        <i class="pi pi-user"></i>
+        <input pInputText type="text" placeholder="Correo" [(ngModel)]="usuario_correo"/>
+      </div>
+      <div class="p-input-icon-left">
+        <i class="pi pi-key"></i>
+        <input pPassword type="password" placeholder="Contraseña" [(ngModel)]="usuario_clave"/>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <button pButton pRipple class="p-button-text" (click)="login()">Login</button>
+  </ng-template>
+
+</p-dialog>
 

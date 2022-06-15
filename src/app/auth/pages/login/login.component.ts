@@ -8,7 +8,14 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private _router: Router) { }
+  //Valores del formulario
+  public usuario_correo: string;
+  public usuario_clave: string;
+
+  constructor(private _router: Router) {
+    this.usuario_correo = "";
+    this.usuario_clave = "";
+  }
 
   ngOnInit(): void {
   }

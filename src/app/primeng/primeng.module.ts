@@ -12,14 +12,17 @@ import {ToolbarModule} from "primeng/toolbar";
 import {InputTextModule} from "primeng/inputtext";
 import {DropdownModule} from "primeng/dropdown";
 import {TooltipModule} from "primeng/tooltip";
+import {PasswordModule} from "primeng/password";
+import {MessageModule} from "primeng/message";
+import {MessagesModule} from "primeng/messages";
 
 @NgModule({
   //No necesitamos hacer imports, solo exports para poder usar estos módulos en otros componentes
 
   exports: [
-    MenuModule,
-    CardModule,
     ButtonModule,
+    CardModule,
+    MenuModule,
     ProgressBarModule,
     ToastModule,
     TableModule,
@@ -29,7 +32,10 @@ import {TooltipModule} from "primeng/tooltip";
     ToolbarModule,
     InputTextModule,
     DropdownModule,
-    TooltipModule
+    TooltipModule,
+    PasswordModule,
+    MessageModule,
+    MessagesModule
   ]
 })
 export class PrimengModule { }

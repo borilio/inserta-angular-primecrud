@@ -15,6 +15,9 @@ import {TooltipModule} from "primeng/tooltip";
 import {PasswordModule} from "primeng/password";
 import {MessageModule} from "primeng/message";
 import {MessagesModule} from "primeng/messages";
+import {AvatarModule} from "primeng/avatar";
+import {TieredMenuModule} from "primeng/tieredmenu";
+import {SlideMenuModule} from "primeng/slidemenu";
 
 @NgModule({
   //No necesitamos hacer imports, solo exports para poder usar estos módulos en otros componentes
@@ -35,7 +38,10 @@ import {MessagesModule} from "primeng/messages";
     TooltipModule,
     PasswordModule,
     MessageModule,
-    MessagesModule
+    MessagesModule,
+    AvatarModule,
+    TieredMenuModule,
+    SlideMenuModule
   ]
 })
 export class PrimengModule { }

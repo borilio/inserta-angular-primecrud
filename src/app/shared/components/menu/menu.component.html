@@ -1,1 +1,23 @@
-<p-menu [model]="items"></p-menu>
+<p-tieredMenu [model]="items"></p-tieredMenu>
+
+<p-card [style]="{'width': '12.5rem', 'margin': '2rem 0rem'}">
+  <div *ngIf="this.usuarioActivo.id">
+    <div class="row">
+      <div class="col-3">
+        <p-avatar image="https://thispersondoesnotexist.com/image" styleClass="me-2" size="x-large" shape="circle"></p-avatar>
+      </div>
+      <div class="col">
+        <div class="row">
+          <h5>{{this.usuarioActivo.nombre}}</h5>
+        </div>
+        <div class="row">
+          <small>{{this.usuarioActivo.correo}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!this.usuarioActivo.id">
+    <button pButton pRipple routerLink="/auth/login" class="p-button-raised" label="Login"></button>
+  </div>
+</p-card>

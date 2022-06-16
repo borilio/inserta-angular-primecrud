@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MenuItem, PrimeIcons} from "primeng/api";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +12,12 @@ export class MenuComponent implements OnInit {
 
   public items: MenuItem[];
 
-  constructor(private _router : Router) {
+  constructor(
+    private _router : Router,
+    private _authService: AuthService
+    ) {
     this.items = [
+      {label: "Inicio", icon: PrimeIcons.HOME, routerLink: "" },
       {label: "Usuarios", icon: PrimeIcons.USERS, routerLink: "usuarios" },
       {label: "Centrales", icon: PrimeIcons.BUILDING, routerLink: "centrales" },
       {label: "Incidencias", icon: PrimeIcons.CALENDAR_TIMES, routerLink: "incidencias" },
@@ -25,11 +30,18 @@ export class MenuComponent implements OnInit {
     ];
   }
 
+  get usuarioActivo(){
+    return this._authService.usuarioActivo;
+  }
+
   ngOnInit(): void {
   }
 
   public logout() {
+    this._authService.logout();
     this._router.navigate(['/auth/login']);
   }
+
+
 
 }

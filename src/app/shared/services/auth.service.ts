@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Usuario} from "../interfaces/usuario.interface";
-import {Observable, tap} from "rxjs";
+import {map, Observable, of, tap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -24,12 +24,34 @@ export class AuthService {
           console.log("Interceptamos la respuesta del observable", resp);
           if (resp.length > 0) {
             this._usuarioActivo = resp[0];
+            localStorage.setItem("token", this._usuarioActivo.id.toString());
           }
         })
       );
   }
 
+  public verificarToken() : Observable<boolean> {
+    //Si no está guardado, devolvemos un false
+    if (!localStorage.getItem('token')) {
+      return of(false); //Así devolvemos un observable de boolean
+    }
+
+    //Y si está guardado, debemos devolver true, peeeero...
+    //SOLO si esa id existe realmente, por lo que hacemos la consulta
+    const idUsuarioActivo = localStorage.getItem('token'); //Sacamos del localStorage la id del usuario
+    const url = `http://localhost:3000/usuarios/${idUsuarioActivo}`;
+    return this._http.get<Usuario>(url)
+      .pipe(
+        map( (usuario) => {
+          this._usuarioActivo = usuario;
+          return true;
+        })
+      );
+  }
+
+
   public logout() :void {
     this._usuarioActivo = undefined;
+    localStorage.removeItem("token");
   }
 }
